@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "05d5e774-af9f-4210-8bb7-508654a3db91",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34688984"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"anuj_doe\",\n  \"email\": \"anuj@yopmail.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"address\": \"123 Street\",\n  \"city\": \"New York\",\n  \"state\": \"NY\",\n  \"country\": \"USA\",\n  \"pincode\": \"10001\",\n  \"isd_code\": \"+1\",\n  \"mobile_number\": \"1234567890\",\n  \"password\": \"Anuj@16102062\",\n  \"confirm_password\": \"Anuj@16102062\",\n  \"user_type\": \"Individual\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"anuj_doe\",\n     \"password\": \"Anuj@16102062\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create incident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNTU2MDk2LCJpYXQiOjE3MzM1NTI0OTYsImp0aSI6IjAyOTYxYmQwOWViYjRmNjA4MjJiN2M0Yzk3MjI5NDUxIiwidXNlcl9pZCI6MX0.xgW3BTrkdH6vtsF2uwzc9LWtDHwP3hrM8cVa1Liiiig",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"incident_details\": \"Details about the incident\",\n    \"priority\": \"High\",\n    \"status\": \"Open\",\n    \"incident_type\":\"Individual\",\n    \"details\":\"Just test\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/incidents/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"incidents",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update incident",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNzUwNTEzLCJpYXQiOjE3MzM3NDY5MTMsImp0aSI6IjkwMDQyMmE3YTg4YjQ3YWE4ZmVmN2ZlYWM5ZjFiNTQxIiwidXNlcl9pZCI6MX0.Zf1_Yu8xaB1ZElZc9_37QPdTqO0MtnMWiDD_EkQ0OMg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"incident_details\": \"Details about the incident--1\",\n    \"priority\": \"High\",\n    \"status\": \"Open\",\n    \"incident_type\":\"Individual\",\n    \"details\":\"Just tes---t\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/incidents/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"incidents",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Incident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNzUwNTEzLCJpYXQiOjE3MzM3NDY5MTMsImp0aSI6IjkwMDQyMmE3YTg4YjQ3YWE4ZmVmN2ZlYWM5ZjFiNTQxIiwidXNlcl9pZCI6MX0.Zf1_Yu8xaB1ZElZc9_37QPdTqO0MtnMWiDD_EkQ0OMg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"title\": \"Sample Document\",\n  \"content\": \"This is a test document.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/ingestion/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ingestion",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selection list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNzUwNTEzLCJpYXQiOjE3MzM3NDY5MTMsImp0aSI6IjkwMDQyMmE3YTg4YjQ3YWE4ZmVmN2ZlYWM5ZjFiNTQxIiwidXNlcl9pZCI6MX0.Zf1_Yu8xaB1ZElZc9_37QPdTqO0MtnMWiDD_EkQ0OMg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"title\": \"Sample Document\",\n  \"content\": \"This is a test document.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/selection/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"selection",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get selected doc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNzUwNTEzLCJpYXQiOjE3MzM3NDY5MTMsImp0aSI6IjkwMDQyMmE3YTg4YjQ3YWE4ZmVmN2ZlYWM5ZjFiNTQxIiwidXNlcl9pZCI6MX0.Zf1_Yu8xaB1ZElZc9_37QPdTqO0MtnMWiDD_EkQ0OMg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"document_ids\": [1, 2]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/selection/select",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"selection",
+						"select"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get qa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNzUwNTEzLCJpYXQiOjE3MzM3NDY5MTMsImp0aSI6IjkwMDQyMmE3YTg4YjQ3YWE4ZmVmN2ZlYWM5ZjFiNTQxIiwidXNlcl9pZCI6MX0.Zf1_Yu8xaB1ZElZc9_37QPdTqO0MtnMWiDD_EkQ0OMg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"question\": \"What is this document about?\",\n  \"document_ids\": [1]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/qa/ask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"qa",
+						"ask"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
