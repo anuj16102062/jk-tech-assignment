@@ -1,0 +1,256 @@
+Overview
+
+This document provides a technical overview and test cases for a Retrieval-Augmented Generation (RAG) based Question and Answer (Q&A) system. The system uses Grok to generate embeddings, retrieve relevant documents, and generate answers for user questions.
+
+1. Application Components
+
+Key Features
+
+Document Ingestion: Accepts documents, generates embeddings, and stores them.
+
+Question Answering (Q&A): Handles user questions, retrieves relevant documents, and generates answers based on context.
+
+Document Selection: Filters the documents used for answering questions.
+
+Technologies
+
+Backend Framework: Flask (Python)
+
+Embedding and Retrieval: Grok Library
+
+Database: Postgres or in-memory data structures for this example
+
+Similarity Metric: Cosine similarity
+
+2. API Endpoints
+
+1. Document Ingestion API
+
+Endpoint: /ingest
+
+Method: POST
+
+Payload:
+
+{
+    "title": "Document Title",
+    "content": "Document Content"
+}
+
+Response:
+
+{
+    "message": "Document ingested successfully",
+    "embedding": [embedding_vector]
+}
+
+2. Q&A API
+
+Endpoint: /qa
+
+Method: POST
+
+Payload:
+
+{
+    "question": "User Question",
+    "document_ids": [1, 2, 3]
+}
+
+Response:
+
+{
+    "answer": "Generated Answer"
+}
+
+3. Testing Methodology
+
+Test Cases
+
+1. Document Ingestion API
+
+Test ID
+
+Scenario
+
+Input
+
+Expected Output
+
+TC-001
+
+Valid document ingestion
+
+{ "title": "Doc 1", "content": "Sample content" }
+
+{ "message": "Document ingested successfully", "embedding": [embedding_vector] }
+
+TC-002
+
+Missing document title
+
+{ "content": "Sample content" }
+
+{ "error": "Title is required" }
+
+TC-003
+
+Missing document content
+
+{ "title": "Doc 1" }
+
+{ "error": "Content is required" }
+
+TC-004
+
+Empty payload
+
+{}
+
+{ "error": "Invalid request" }
+
+2. Q&A API
+
+Test ID
+
+Scenario
+
+Input
+
+Expected Output
+
+TC-005
+
+Valid question and document IDs
+
+{ "question": "What is this document about?", "document_ids": [1] }
+
+{ "answer": "This is a document about..." }
+
+TC-006
+
+Question without document IDs
+
+{ "question": "What is this document about?" }
+
+{ "error": "Document IDs are required" }
+
+TC-007
+
+Invalid document ID
+
+{ "question": "What is this document about?", "document_ids": [999] }
+
+{ "answer": "No relevant document found." }
+
+TC-008
+
+Missing question
+
+{ "document_ids": [1] }
+
+{ "error": "Question is required" }
+
+TC-009
+
+Empty payload
+
+{}
+
+{ "error": "Invalid request" }
+
+3. Edge Cases
+
+Test ID
+
+Scenario
+
+Input
+
+Expected Output
+
+TC-010
+
+Large document content
+
+{ "title": "Doc 1", "content": "<large_content>" }
+
+{ "message": "Document ingested successfully", "embedding": [embedding_vector] }
+
+TC-011
+
+Multiple document retrieval
+
+{ "question": "What is this document about?", "document_ids": [1, 2, 3] }
+
+{ "answer": "Generated answer based on retrieved documents." }
+
+4. Example Test Case (Postman)
+
+Test Name: Valid Q&A Request
+
+Request
+
+Endpoint: /qa
+
+Method: POST
+
+Payload:
+
+{
+    "question": "What is this document about?",
+    "document_ids": [1]
+}
+
+Expected Response
+
+{
+    "answer": "This is a document about requesting leave."
+}
+
+Steps:
+
+Open Postman.
+
+Create a new request with the given endpoint and payload.
+
+Send the request and validate the response against the expected output.
+
+5. Technical Implementation Details
+
+Document Ingestion
+
+Purpose: Generate embeddings for documents and store them.
+
+Process:
+
+Accept the document title and content via the API.
+
+Generate an embedding vector using Grok's embed_document method.
+
+Store the document and its embedding in a database (or memory for demo purposes).
+
+Q&A API
+
+Purpose: Retrieve relevant documents based on a question and generate an answer.
+
+Process:
+
+Accept the user question and document IDs via the API.
+
+Generate an embedding for the question using Grok's embed_text method.
+
+Compute similarity scores between the question embedding and document embeddings.
+
+Retrieve the most relevant document and pass it to Grok's generate_answer method to generate a response.
+
+6. Future Improvements
+
+Implement caching for embeddings to improve performance.
+
+Allow batch processing for large datasets.
+
+Extend support for multiple languages using Grok's multilingual capabilities.
+
+Introduce logging and monitoring for production readiness.
+
